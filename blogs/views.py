@@ -57,7 +57,7 @@ def getarticles(request):
 
 # a function that fetches a single article and all its reviews and tags, and if a new revie is made,
 #  it is posted into the database
-
+@login_required(login_url='login')
 def getsinglearticle(request, pk):
     article = Blog.objects.get(id=pk)   # fetches a particular blod whose id is pk.
     tags = article.tags.all()           # fetches all tags from the database
@@ -77,6 +77,7 @@ def getsinglearticle(request, pk):
     return render(request, 'blogs/single-article.html', context)
 
 
+@login_required(login_url='login')
 def createBlog(request):
     form = BlogForm()
     if request.method == 'POST':
@@ -88,6 +89,7 @@ def createBlog(request):
     return render(request, 'blogs/blog-form.html', context) 
 
 
+@login_required(login_url='login')
 def updateBlog(request,pk):
     template = 'blogs/blog-form.html'
     context = {}
@@ -102,6 +104,7 @@ def updateBlog(request,pk):
     return render(request, template, context)
 
 
+@login_required(login_url='login')
 def deleteBlog(request, pk):
     blog = Blog.objects.get(id=pk)
     if request.method == 'POST':

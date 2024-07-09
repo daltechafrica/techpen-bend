@@ -2,7 +2,7 @@ from django.urls import path
 # from .views import views getarticles, getsinglearticle, createBlog, updateBlog, deleteBlog,
 
 from . import views
-
+ 
 
 urlpatterns = [
     path('', views.getarticles, name='articles'),
