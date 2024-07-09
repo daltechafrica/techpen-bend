@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>{{article.title}}</h1>
+
+{% for tag in tags %}
+    <span style="border: 1px solid black; padding: 1rem; margin-right: 1rem; border-radius: 2rem;">{{ tag }}</span>
+{% endfor %}
+<p>{{article.body}}</p>
+<hr />
+
+<h2>Reviews | {{counter}} |  </h2> 
+<form method="POST">
+    {% csrf_token %}
+
+    <div style="display: inline-flex; max-height: 2.5rem; gap: 1rem; ">
+        {% for element in review_form %}
+            {{ element.label }} {{element}}
+        {% endfor%}
+        <input type="submit" value="post review" />
+    </div>
+</form>
+<hr/>
+<div style="display: flex; flex-direction: column-reverse;">
+    {% for review in reviews %}
+
+        <span style=" width: 80vw; overflow-x: hidden; background: #e16f6f; margin-left: 2.5rem; max-width: max-content; padding: .5rem; margin-right: 1rem;  border-radius: 5px 15px;">{{ review.body }}</span>
+        <span style="padding: .35rem; border-radius: 5px 15px; max-width:max-content; font-size: small; border: 1px solid black;">{{review.rate}}</span>
+    {% endfor %}
+</div>
+
+{% endblock content %}

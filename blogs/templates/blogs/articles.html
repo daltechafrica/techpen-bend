@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1> All Articles</h1>
+
+{% for article in articles %}
+<h3 style="text-align: center;" >
+    <a href="{% url 'article' article.id %}">{{article.title}} </a>
+    {% for tag in article.tags.all %}
+        <span style=" margin-left: 1rem;  border: 1px solid black; padding: .25rem; margin-right: 1rem; border-radius: 2rem;">{{ tag }}</span>
+    {% endfor %}
+    
+</h3> <br />
+    <span style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ article.body }}</span> <br />
+    <div style="text-align: center;">
+        <span>
+            <a href="{% url 'update' article.id %}"> Edit </a>
+        </span>
+        <span>
+            <a href="{% url 'delete' article.id %}"> Delete </a>
+        </span>
+    </div>
+    <hr />
+{% endfor %}
+  
+
+
+{% endblock content %}

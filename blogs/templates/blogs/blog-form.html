@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content%}
+
+<h1> Create Blog </h1>
+<form method = "POST" action="">
+    {% csrf_token %}
+    {% for element in form %} 
+        {{element.label}}
+        {{element}} <p>
+    {% endfor %}
+    <input type="submit" value="Submit"/>
+</form>
+
+{% endblock content %}
